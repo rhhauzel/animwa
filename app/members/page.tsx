@@ -1,20 +1,37 @@
-"use client"
+'use client'
 
-import React from "react"
+import React from 'react'
 import {
   createColumnHelper,
   createPaginatedRowModel,
   rowPaginationFeature,
   tableFeatures,
   useTable,
-} from "@tanstack/react-table"
-import { createClient } from "@/lib/supabase/client"
-import { Table, TableBody, TableCell, TableHeader, TableRow } from "@/components/ui/table"
-import { Button } from "@/components/ui/button"
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/app-sidebar"
-import { Separator } from "@/components/ui/separator"
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
+} from '@tanstack/react-table'
+import { createClient } from '@/lib/supabase/client'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import { Button } from '@/components/ui/button'
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from '@/components/ui/sidebar'
+import { AppSidebar } from '@/components/app-sidebar'
+import { Separator } from '@/components/ui/separator'
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb'
 
 type Person = {
   id: string
@@ -45,61 +62,59 @@ export default function Members() {
     () =>
       columnHelper.columns([
         columnHelper.display({
-          id: "rowNumber",
-          header: "#",
+          id: 'rowNumber',
+          header: '#',
           cell: ({ row }) => row.getDisplayIndex() + 1,
         }),
 
-        columnHelper.accessor("hming", {
-          header: "Hming",
+        columnHelper.accessor('hming', {
+          header: 'Hming',
           cell: (info) => info.getValue(),
         }),
 
-        columnHelper.accessor("chhungte", {
-          header: "Chhungte",
+        columnHelper.accessor('chhungte', {
+          header: 'Chhungte',
           cell: (info) => info.getValue(),
         }),
 
-        columnHelper.accessor("mobile", {
-          header: "Mobile",
+        columnHelper.accessor('mobile', {
+          header: 'Mobile',
           cell: (info) => info.getValue(),
         }),
 
-        columnHelper.accessor("chhungte_mobile", {
-          header: "Visits",
+        columnHelper.accessor('chhungte_mobile', {
+          header: 'Visits',
           cell: (info) => info.getValue(),
         }),
 
-        columnHelper.accessor("pianni", {
-          header: "Status",
+        columnHelper.accessor('pianni', {
+          header: 'Pianni',
           cell: (info) => info.getValue(),
         }),
 
-        columnHelper.accessor("veng", {
-          header: "Veng",
+        columnHelper.accessor('veng', {
+          header: 'Veng',
           cell: (info) => info.getValue(),
         }),
 
-         columnHelper.accessor("awm_tan_ni", {
-          header: "Awm Tan Ni",
+        columnHelper.accessor('awm_tan_ni', {
+          header: 'Awm Tan Ni',
           cell: (info) => info.getValue(),
         }),
 
-         columnHelper.accessor("hnathawhna", {
-          header: "Hnathawhna",
+        columnHelper.accessor('hnathawhna', {
+          header: 'Hnathawhna',
           cell: (info) => info.getValue(),
         }),
       ]),
-    []
+    [],
   )
 
   React.useEffect(() => {
     const fetchMembers = async () => {
       const supabase = createClient()
 
-      const { data, error } = await supabase
-        .from("members")
-        .select("*")
+      const { data, error } = await supabase.from('members').select('*')
 
       if (error) {
         setError(error.message)
@@ -130,22 +145,20 @@ export default function Members() {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarInset className="min-w-0">
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-          <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
+      <SidebarInset className='min-w-0'>
+        <header className='flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12'>
+          <div className='flex items-center gap-2 px-4'>
+            <SidebarTrigger className='-ml-1' />
             <Separator
-              orientation="vertical"
-              className="mr-2 data-[orientation=vertical]:h-4"
+              orientation='vertical'
+              className='mr-2 data-[orientation=vertical]:h-4'
             />
             <Breadcrumb>
               <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    ANIMWA
-                  </BreadcrumbLink>
+                <BreadcrumbItem className='hidden md:block'>
+                  <BreadcrumbLink href='#'>ANIMWA</BreadcrumbLink>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
+                <BreadcrumbSeparator className='hidden md:block' />
                 <BreadcrumbItem>
                   <BreadcrumbPage>Members</BreadcrumbPage>
                 </BreadcrumbItem>
@@ -153,12 +166,12 @@ export default function Members() {
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-            <MyTable data={members} columns={columns} />
+        <div className='flex flex-1 flex-col gap-4 p-4 pt-0'>
+          <MyTable data={members} columns={columns} />
         </div>
       </SidebarInset>
     </SidebarProvider>
-    )
+  )
 }
 
 function MyTable({
@@ -175,11 +188,11 @@ function MyTable({
       data,
       debugTable: true,
     },
-    (state) => state
+    (state) => state,
   )
 
   return (
-    <div className="demo-root">
+    <div className='demo-root'>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -206,54 +219,55 @@ function MyTable({
         </TableBody>
       </Table>
 
-      <div className="controls">
-        <Button variant="outline"
+      <div className='controls'>
+        <Button
+          variant='outline'
           onClick={() => table.firstPage()}
           disabled={!table.getCanPreviousPage()}
         >
-          {"<<"}
+          {'<<'}
         </Button>
 
-        <Button variant="outline"
+        <Button
+          variant='outline'
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
-          {"<"}
+          {'<'}
         </Button>
 
-        <Button variant="outline"
+        <Button
+          variant='outline'
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
-          {">"}
+          {'>'}
         </Button>
 
-        <Button variant="outline"
+        <Button
+          variant='outline'
           onClick={() => table.lastPage()}
           disabled={!table.getCanLastPage()}
         >
-          {">>"}
+          {'>>'}
         </Button>
 
         <span>
-          Page{" "}
+          Page{' '}
           <strong>
-            {table.state.pagination.pageIndex + 1} of{" "}
-            {table.getPageCount()}
+            {table.state.pagination.pageIndex + 1} of {table.getPageCount()}
           </strong>
         </span>
 
         <span>
           Go to page:
           <input
-            type="number"
+            type='number'
             min={1}
             max={table.getPageCount()}
             value={table.state.pagination.pageIndex + 1}
             onChange={(e) => {
-              const page = e.target.value
-                ? Number(e.target.value) - 1
-                : 0
+              const page = e.target.value ? Number(e.target.value) - 1 : 0
 
               table.setPageIndex(page)
             }}
@@ -277,8 +291,7 @@ function MyTable({
       </div>
 
       <div>
-        Showing {table.getRowModel().rows.length} of{" "}
-        {table.getRowCount()} Rows
+        Showing {table.getRowModel().rows.length} of {table.getRowCount()} Rows
       </div>
     </div>
   )
