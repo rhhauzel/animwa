@@ -39,31 +39,21 @@ const data = {
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
     },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "MENU",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "#",
+          title: "Members",
+          url: "/members",
         },
         {
-          title: "Starred",
-          url: "#",
+          title: "Add Members",
+          url: "/members/add",
         },
         {
           title: "Settings",
