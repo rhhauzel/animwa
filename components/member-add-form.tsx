@@ -74,12 +74,12 @@ export function MemberAddForm() {
 
     return (
         <form onSubmit={form.handleSubmit(onSubmit)}>
-            <FieldGroup className="max-w-sm">
+            <FieldGroup className="max-w">
                 <Controller
                     control={form.control}
                     name="hming"
                     render={({ field, fieldState }) => (
-                        <Field aria-invalid={fieldState.invalid}>
+                        <Field aria-invalid={fieldState.invalid} orientation="horizontal">
                             <FieldLabel htmlFor="hming">Hming</FieldLabel>
                             <Input
                                 placeholder="shadcn"
@@ -87,9 +87,6 @@ export function MemberAddForm() {
                                 id="hming"
                                 aria-invalid={fieldState.invalid}
                             />
-                            <FieldDescription>
-                                Hmingpum ziah luh na.
-                            </FieldDescription>
                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
                     )}
@@ -99,7 +96,7 @@ export function MemberAddForm() {
                     control={form.control}
                     name="chhungte"
                     render={({ field, fieldState }) => (
-                        <Field aria-invalid={fieldState.invalid}>
+                        <Field aria-invalid={fieldState.invalid} orientation="horizontal">
                             <FieldLabel htmlFor="chhungte">Chhungte</FieldLabel>
                             <Input
                                 {...field}
@@ -115,7 +112,7 @@ export function MemberAddForm() {
                     control={form.control}
                     name="mobile"
                     render={({ field, fieldState }) => (
-                        <Field aria-invalid={fieldState.invalid}>
+                        <Field aria-invalid={fieldState.invalid} orientation="horizontal">
                             <FieldLabel htmlFor="mobile">Mobile</FieldLabel>
                             <Input
                                 {...field}
@@ -131,7 +128,7 @@ export function MemberAddForm() {
                     control={form.control}
                     name="chhungte_mobile"
                     render={({ field, fieldState }) => (
-                        <Field aria-invalid={fieldState.invalid}>
+                        <Field aria-invalid={fieldState.invalid} orientation="horizontal">
                             <FieldLabel htmlFor="chhungte_mobile">Chhungte Mobile</FieldLabel>
                             <Input
                                 {...field}
@@ -147,7 +144,7 @@ export function MemberAddForm() {
                     control={form.control}
                     name="pianni"
                     render={({ field, fieldState }) => (
-                        <Field aria-invalid={fieldState.invalid}>
+                        <Field aria-invalid={fieldState.invalid} orientation="horizontal">
                             <FieldLabel htmlFor="dob">Pianni</FieldLabel>
                             <Popover open={pianniOpen} onOpenChange={setPianniOpen}>
                                 <PopoverTrigger asChild>
@@ -187,7 +184,7 @@ export function MemberAddForm() {
                     control={form.control}
                     name="veng"
                     render={({ field, fieldState }) => (
-                        <Field aria-invalid={fieldState.invalid}>
+                        <Field aria-invalid={fieldState.invalid} orientation="horizontal">
                             <FieldLabel htmlFor="veng">Veng</FieldLabel>
                             <Textarea
                                 placeholder="Address puitling ziah luh ni se."
@@ -202,7 +199,7 @@ export function MemberAddForm() {
                     control={form.control}
                     name="awm_tan_ni"
                     render={({ field, fieldState }) => (
-                        <Field aria-invalid={fieldState.invalid}>
+                        <Field aria-invalid={fieldState.invalid} orientation="horizontal">
                             <FieldLabel htmlFor="awm_tan_ni">Awm Tan Ni</FieldLabel>
                             <Popover open={awmTanNiOpen} onOpenChange={setAwmTanNiOpen}>
                                 <PopoverTrigger asChild>
@@ -242,7 +239,7 @@ export function MemberAddForm() {
                     control={form.control}
                     name="hnathawhna"
                     render={({ field, fieldState }) => (
-                        <Field aria-invalid={fieldState.invalid}>
+                        <Field aria-invalid={fieldState.invalid} orientation="horizontal">
                             <FieldLabel htmlFor="hnathawhna">Hnathawhna</FieldLabel>
                             <Textarea
                                 placeholder="Address puitling ziah luh ni se."
