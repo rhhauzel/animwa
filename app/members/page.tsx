@@ -15,6 +15,7 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/s
 import { AppSidebar } from "@/components/app-sidebar"
 import { Separator } from "@/components/ui/separator"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
+import { format } from "date-fns";
 
 type Person = {
   id: string
@@ -66,13 +67,13 @@ export default function Members() {
         }),
 
         columnHelper.accessor("chhungte_mobile", {
-          header: "Visits",
+          header: "Chhungte Mobile",
           cell: (info) => info.getValue(),
         }),
 
         columnHelper.accessor("pianni", {
-          header: "Status",
-          cell: (info) => info.getValue(),
+          header: "Pianni",
+          cell: (info) => format(info.getValue(),"dd/MM/yyyy"),
         }),
 
         columnHelper.accessor("veng", {
@@ -82,7 +83,7 @@ export default function Members() {
 
          columnHelper.accessor("awm_tan_ni", {
           header: "Awm Tan Ni",
-          cell: (info) => info.getValue(),
+          cell: (info) => format(info.getValue(),"dd/MM/yyyy"),
         }),
 
          columnHelper.accessor("hnathawhna", {

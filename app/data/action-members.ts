@@ -4,16 +4,16 @@ import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from 'next/cache'
 
 // CREATE
-export async function createPost(formData: FormData) {
+export async function createPost(formData: { hming: string; chhungte: string; mobile: string; chhungte_mobile: string; pianni: Date; veng: string; awm_tan_ni: Date; hnathawhna: string }) {
   const supabase = await createClient()
-  const hming = formData.get('hming') as string
-  const chhungte = formData.get('chhungte') as string
-  const mobile = formData.get('mobile') as string
-  const chhungte_mobile = formData.get('chhungte_mobile') as string
-  const pianni = formData.get('pianni') as string
-  const veng = formData.get('veng') as string
-  const awm_tan_ni = formData.get('awm_tan_ni') as string
-  const hnathawhna = formData.get('hnathawhna') as string
+  const hming = formData.hming
+  const chhungte = formData.chhungte
+  const mobile = formData.mobile
+  const chhungte_mobile = formData.chhungte_mobile
+  const pianni = formData.pianni
+  const veng = formData.veng
+  const awm_tan_ni = formData.awm_tan_ni
+  const hnathawhna = formData.hnathawhna
   const created_by = ""
 
   const { error } = await supabase
@@ -26,16 +26,16 @@ export async function createPost(formData: FormData) {
 }
 
 // UPDATE
-export async function updatePost(id: string, formData: FormData) {
+export async function updatePost(id: string, formData: { hming: string; chhungte: string; mobile: string; chhungte_mobile: string; pianni: string; veng: string; awm_tan_ni: string; hnathawhna: string }) {
   const supabase = await createClient()
-  const hming = formData.get('hming') as string
-  const chhungte = formData.get('chhungte') as string
-  const mobile = formData.get('mobile') as string
-  const chhungte_mobile = formData.get('chhungte_mobile') as string
-  const pianni = formData.get('pianni') as string
-  const veng = formData.get('veng') as string
-  const awm_tan_ni = formData.get('awm_tan_ni') as string
-  const hnathawhna = formData.get('hnathawhna') as string
+  const hming = formData.hming
+  const chhungte = formData.chhungte
+  const mobile = formData.mobile
+  const chhungte_mobile = formData.chhungte_mobile
+  const pianni = formData.pianni
+  const veng = formData.veng
+  const awm_tan_ni = formData.awm_tan_ni
+  const hnathawhna = formData.hnathawhna
   const created_by = ""
 
   const { error } = await supabase
