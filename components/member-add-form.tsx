@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from "./ui/field";
+import { Field, FieldError, FieldGroup, FieldLabel } from "./ui/field";
 import { Input } from "./ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "./ui/button";
@@ -73,15 +73,15 @@ export function MemberAddForm() {
     }, []);
 
     return (
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="m-5" onSubmit={form.handleSubmit(onSubmit)}>
             <FieldGroup className="max-w">
                 <Controller
                     control={form.control}
                     name="hming"
                     render={({ field, fieldState }) => (
-                        <Field aria-invalid={fieldState.invalid} orientation="horizontal">
+                        <Field className="flex justify-between" aria-invalid={fieldState.invalid} orientation="horizontal">
                             <FieldLabel htmlFor="hming">Hming</FieldLabel>
-                            <Input
+                            <Input className="w-full/2"
                                 placeholder="shadcn"
                                 {...field}
                                 id="hming"
@@ -96,9 +96,9 @@ export function MemberAddForm() {
                     control={form.control}
                     name="chhungte"
                     render={({ field, fieldState }) => (
-                        <Field aria-invalid={fieldState.invalid} orientation="horizontal">
+                        <Field className="flex justify-between" aria-invalid={fieldState.invalid} orientation="horizontal">
                             <FieldLabel htmlFor="chhungte">Chhungte</FieldLabel>
-                            <Input
+                            <Input className="w-full/2"
                                 {...field}
                                 id="chhungte"
                                 aria-invalid={fieldState.invalid}
@@ -112,9 +112,9 @@ export function MemberAddForm() {
                     control={form.control}
                     name="mobile"
                     render={({ field, fieldState }) => (
-                        <Field aria-invalid={fieldState.invalid} orientation="horizontal">
+                        <Field className="flex justify-between" aria-invalid={fieldState.invalid} orientation="horizontal">
                             <FieldLabel htmlFor="mobile">Mobile</FieldLabel>
-                            <Input
+                            <Input className="w-full/2"
                                 {...field}
                                 id="mobile"
                                 aria-invalid={fieldState.invalid}
@@ -128,9 +128,9 @@ export function MemberAddForm() {
                     control={form.control}
                     name="chhungte_mobile"
                     render={({ field, fieldState }) => (
-                        <Field aria-invalid={fieldState.invalid} orientation="horizontal">
+                        <Field className="flex justify-between" aria-invalid={fieldState.invalid} orientation="horizontal">
                             <FieldLabel htmlFor="chhungte_mobile">Chhungte Mobile</FieldLabel>
-                            <Input
+                            <Input className="w-full/2"
                                 {...field}
                                 id="chhungte_mobile"
                                 aria-invalid={fieldState.invalid}
@@ -184,9 +184,9 @@ export function MemberAddForm() {
                     control={form.control}
                     name="veng"
                     render={({ field, fieldState }) => (
-                        <Field aria-invalid={fieldState.invalid} orientation="horizontal">
+                        <Field className="flex justify-between" aria-invalid={fieldState.invalid} orientation="horizontal">
                             <FieldLabel htmlFor="veng">Veng</FieldLabel>
-                            <Textarea
+                            <Textarea className="w-full/2"
                                 placeholder="Address puitling ziah luh ni se."
                                 {...field}
                             />
@@ -239,9 +239,9 @@ export function MemberAddForm() {
                     control={form.control}
                     name="hnathawhna"
                     render={({ field, fieldState }) => (
-                        <Field aria-invalid={fieldState.invalid} orientation="horizontal">
+                        <Field className="flex justify-between" aria-invalid={fieldState.invalid} orientation="horizontal">
                             <FieldLabel htmlFor="hnathawhna">Hnathawhna</FieldLabel>
-                            <Textarea
+                            <Textarea className="w-full/2"
                                 placeholder="Address puitling ziah luh ni se."
                                 {...field}
                             />
