@@ -26,7 +26,7 @@ export async function createPost(formData: { hming: string; chhungte: string; mo
 
   if (error) throw new Error(error.message)
   
-  revalidatePath('/')
+  revalidatePath('/members')
 }
 
 // UPDATE
