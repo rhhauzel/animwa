@@ -16,6 +16,7 @@ import { AppSidebar } from "@/components/app-sidebar"
 import { Separator } from "@/components/ui/separator"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
 import { format } from "date-fns";
+import Link from "next/link"
 
 type Person = {
   id: string
@@ -101,14 +102,8 @@ export default function Members() {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => {
-                  // use member.id here, e.g.:
-                  console.log(member.id);
-                  // or pass it to a handler:
-                  // onMemberAction(member.id);
-                }}
               >
-                Details
+                <Link href={`/members/details/${member.id}`}>Details</Link>
               </Button>
             );
           },

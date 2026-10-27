@@ -52,7 +52,7 @@ export async function updatePost(id: string, formData: { hming: string; chhungte
 
   if (error) throw new Error(error.message)
 
-  revalidatePath('/')
+  revalidatePath('/members')
 }
 
 // DELETE
@@ -66,5 +66,5 @@ export async function deletePost(id: string) {
 
   if (error) throw new Error(error.message)
 
-  revalidatePath('/')
+  revalidatePath('/members')
 }
