@@ -28,6 +28,7 @@ type Person = {
   awm_tan_ni: string
   hnathawhna: string
   created_by: string
+  Action: string
 }
 
 const features = tableFeatures({
@@ -73,7 +74,7 @@ export default function Members() {
 
         columnHelper.accessor("pianni", {
           header: "Pianni",
-          cell: (info) => format(info.getValue(),"dd/MM/yyyy"),
+          cell: (info) => format(info.getValue(), "dd/MM/yyyy"),
         }),
 
         columnHelper.accessor("veng", {
@@ -81,14 +82,36 @@ export default function Members() {
           cell: (info) => info.getValue(),
         }),
 
-         columnHelper.accessor("awm_tan_ni", {
+        columnHelper.accessor("awm_tan_ni", {
           header: "Awm Tan Ni",
-          cell: (info) => format(info.getValue(),"dd/MM/yyyy"),
+          cell: (info) => format(info.getValue(), "dd/MM/yyyy"),
         }),
 
-         columnHelper.accessor("hnathawhna", {
+        columnHelper.accessor("hnathawhna", {
           header: "Hnathawhna",
           cell: (info) => info.getValue(),
+        }),
+
+        columnHelper.accessor("Action", {
+          header: "Action",
+          cell: (info) => {
+            const member = info.row.original;
+
+            return (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  // use member.id here, e.g.:
+                  console.log(member.id);
+                  // or pass it to a handler:
+                  // onMemberAction(member.id);
+                }}
+              >
+                Details
+              </Button>
+            );
+          },
         }),
       ]),
     []
@@ -155,11 +178,11 @@ export default function Members() {
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-            <MyTable data={members} columns={columns} />
+          <MyTable data={members} columns={columns} />
         </div>
       </SidebarInset>
     </SidebarProvider>
-    )
+  )
 }
 
 function MyTable({
@@ -202,6 +225,7 @@ function MyTable({
                   <table.FlexRender cell={cell} />
                 </TableCell>
               ))}
+              <TableCell>{ }</TableCell>
             </TableRow>
           ))}
         </TableBody>
