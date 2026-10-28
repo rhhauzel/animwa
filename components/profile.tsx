@@ -1,46 +1,40 @@
-import { createClient } from "@/lib/supabase/server";
-  
-type Person = {
-  id: string;
-  hming: string;
-  chhungte: string;
-  mobile: string;
-  chhungte_mobile: string;
-  pianni: string;
-  veng: string;
-  awm_tan_ni: string;
-  hnathawhna: string;
-  created_by: string;
-  Action: string;
-};
+'use client';
+import { createClient } from "@/lib/supabase/client";
+import { useEffect, useState } from "react";
 
-interface PageProps {
-  params: Promise<{ id: string }>;
-}
+ type Person = {
+  id: string
+  hming: string
+  chhungte: string
+  mobile: string
+  chhungte_mobile: string
+  pianni: string
+  veng: string
+  thawh_tan_ni: string
+  thawhna: string
+ }
 
-// NO "use server" here — this is a Next.js App Router page, not a Server Action
-export default async function ProfilePage({ params }: PageProps) {
-  const { id } = await params;
+export default function ProfilePage({ params }: { params: Promise<{ id: string }> }) {
+  const [member, setMember] = useState<Person | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const supabase = await createClient();
+  useEffect(() => {
+    async function load() {
+      const { id } = await params;
+      const supabase = await createClient();
+      const { data, error } = await supabase
+        .from("members")
+        .select("*")
+        .eq("id", id)
+        .single();
+      if (!error && data) setMember(data);
+      setLoading(false);
+    }
+    load();
+  }, []);
 
-  // Use .single() so `data` is a Person object instead of a tuple
-  const { data, error } = await supabase
-    .from("members")
-    .select("*")
-    .eq("id", id)
-    .single()
-
-  // Graceful handling for missing member or DB error
-  if (error || !data) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <p className="text-gray-500">Member not found or an error occurred.</p>
-      </div>
-    );
-  }
-
-  const member = data; // alias so JSX is clean
+  if (loading) return <div className="p-6 text-gray-500">Loading...</div>;
+  if (!member) return <div className="p-6 text-red-600">Not found</div>;
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
