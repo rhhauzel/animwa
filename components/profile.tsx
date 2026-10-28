@@ -1,0 +1,82 @@
+import { createClient } from "@/lib/supabase/server";
+  
+type Person = {
+  id: string;
+  hming: string;
+  chhungte: string;
+  mobile: string;
+  chhungte_mobile: string;
+  pianni: string;
+  veng: string;
+  awm_tan_ni: string;
+  hnathawhna: string;
+  created_by: string;
+  Action: string;
+};
+
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+// NO "use server" here — this is a Next.js App Router page, not a Server Action
+export default async function ProfilePage({ params }: PageProps) {
+  const { id } = await params;
+
+  const supabase = await createClient();
+
+  // Use .single() so `data` is a Person object instead of a tuple
+  const { data, error } = await supabase
+    .from("members")
+    .select("*")
+    .eq("id", id)
+    .single()
+
+  // Graceful handling for missing member or DB error
+  if (error || !data) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <p className="text-gray-500">Member not found or an error occurred.</p>
+      </div>
+    );
+  }
+
+  const member = data; // alias so JSX is clean
+
+  return (
+    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        
+        {/* Header background */}
+        <div className="h-32 bg-gradient-to-r from-blue-500 to-indigo-600" />
+
+        {/* Profile body */}
+        <div className="px-6 pb-8 sm:px-10 sm:pb-10 relative">
+          
+          {/* Avatar */}
+          <div className="relative -mt-16 mb-6">
+            <img
+              src={`https://your-cdn.com/avatars/${member.id}.jpg`} // <-- update to real URL
+              alt={member.hming}
+              className="w-28 h-28 rounded-full border-4 border-white object-cover shadow-md bg-gray-200"
+            />
+          </div>
+
+          <div>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-gray-100 pb-6">
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">{member.hming}</h1>
+                <p className="text-sm font-medium text-indigo-600 mt-1">{member.chhungte}</p>
+                <p className="text-sm text-gray-500 mt-1">{member.mobile}</p>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider">About Me</h3>
+              <p className="mt-2 text-gray-600 leading-relaxed text-sm">{member.veng}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
