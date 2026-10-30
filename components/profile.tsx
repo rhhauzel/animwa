@@ -14,6 +14,8 @@ import { useEffect, useState } from "react";
   thawhna: string
  }
 
+ //HELLO
+
 export default function ProfilePage({ params }: { params: Promise<{ id: string }> }) {
   const [member, setMember] = useState<Person | null>(null);
   const [loading, setLoading] = useState(true);
